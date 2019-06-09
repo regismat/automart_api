@@ -5,7 +5,7 @@ describe('Basic server test configurations for mocha and travis', function(){
     describe('GET /', function () {
         it('responds with json', function (done) {
             request(app)
-                .get('/')
+                .get('/api/v1/')
                 .set('Accept', 'application/json')
                 .expect(200, done);
         });
