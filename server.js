@@ -21,6 +21,7 @@ app.get("/api/v1", (req,res) => {
         message: "Basic configuration achived successfully"
     });
 });
+
 app.use('/api/v1/auth', userRoute);
 
  

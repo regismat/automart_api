@@ -1,7 +1,8 @@
 let User = require('./user.model')
 
 const checkUniqEmail = (email) => {
-    return user = User.findByEmail(email);
+    let user = User.findByEmail(email);
+    return user; 
 }
 
 const checkRequiredInfo = (email, password) => {
@@ -12,7 +13,17 @@ const checkRequiredInfo = (email, password) => {
     }
 }
 
+const checkPasswordMatch = (user, password) => {
+    if ( user.password == password ) {
+        console.log('password: ', password);
+        return true;
+    }else{
+        return false;
+    }
+}
+
 module.exports = {
     checkUniqEmail,
-    checkRequiredInfo
+    checkRequiredInfo,
+    checkPasswordMatch
 }
