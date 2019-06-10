@@ -20,6 +20,20 @@ const validateRequiredInfo = (req) => {
         }
 }
 
+const validateOrderStatus = (id) => {
+    const userData = {
+        id,
+        price_offered
+    } = req.body;
+    const order = Order._dataSet[id-1]
+    if ( !order == "" ) {
+        if ( ["accepted", "rejected"].includes(order.status) ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
 
 module.exports = {
     validateRequiredInfo

@@ -44,7 +44,17 @@ class Order {
         return order;
 
     }
+
+    static find(id) {
+        const order = Order._dataSet[id-1];
+        if( order ) {
+            return order;
+        } else {
+            return -1;
+        }
+    }
 };
+
 
 Order._dataSet = [];
 
