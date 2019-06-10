@@ -99,7 +99,7 @@ describe('View a specific car', function () {
     describe('GET /api/v1/car/:id', function () {
         it('should return null, with a status code of 400 when no car found', function (done) {
             request(app)
-                .get('/api/v1/car/2')
+                .get('/api/v1/car/10000')
                 .set('Accept', 'application/json')
                 .expect(400)
                 .then(res => {
@@ -121,6 +121,26 @@ describe('View a specific car', function () {
                 .set('Accept', 'application/json')
                 .expect(200)
             done();
+        })
+    })
+})
+
+describe('View all unsold cars within a price range', function () {
+    describe('GET /api/v1/car?status=available&min_price=x&max_price=y', function () {
+        let found_cars;
+        it('should return an array of cars, returning a status code of 200', function (done) {
+            request(app)
+                .get('/api/v1/car?status=available&min_price=0&max_price=10000')
+                .set('Accept', 'application/json')
+                .expect(200)
+                .then(res => {
+                    res.body.should.be.a("Object");
+                    res.body.should.have.property("status");
+                    res.body.should.have.property("data")
+                    expect(res.body.data).to.be.an('array');
+                });
+            done();
+
         })
     })
 })
