@@ -45,7 +45,7 @@ Car._dataSet = [
         "owner": "1",
         "created_on": "6/10/2019",
         "status": "available",
-        "state": "used",
+        "state": "new",
         "price": 50000,
         "manufacturer": "Mercedes",
         "model": "M7G",
