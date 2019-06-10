@@ -25,7 +25,13 @@ const validateRequiredInfo = (req) => {
     }
 }
 
+const validateCarExists = (id) => {
+    const car = Car._dataSet[id-1];
+    return car;
+}
+
 
 module.exports = {
-    validateRequiredInfo
+    validateRequiredInfo,
+    validateCarExists
 }

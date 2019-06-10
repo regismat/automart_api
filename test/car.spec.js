@@ -27,3 +27,26 @@ describe('Create car advertisement', function(){
         })
     })
 })
+
+describe('Mark posted car advertisement as sold ', function () {
+
+    describe('PATCH /api/v1/car', function () {
+        it('should update a car advertisement as sold with status code 200', function (done) {
+            request(app)
+                .patch('/api/v1/car')
+                .set('Accept', 'application/json')
+                .send(Cars.correctSoldCarData)
+                .expect(200)
+            done();
+        })
+
+        it('should not update a car advertisement because of incorrect data, and return status code 400', function (done) {
+            request(app)
+                .patch('/api/v1/car')
+                .set('Accept', 'application/json')
+                .send(Cars.notCorrectCarData)
+                .expect(400)
+            done();
+        })
+    })
+})
