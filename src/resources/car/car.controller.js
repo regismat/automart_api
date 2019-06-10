@@ -110,12 +110,41 @@ const getCars = (req, res) => {
         });
 }
 
-
+const getCar = (req, res) => {
+    const id = req.params.id;
+    if( !isNaN(id) ) {
+        const car = Car.getCar(id);
+        if( car == false ) {
+            res.status(400).json(
+                {
+                    "status":400,
+                    "data": null,
+                    "message": "car not found"
+                }
+            )
+        } else {
+            res.status(200).json(
+                {
+                    "status": 200,
+                    "data": car
+                }
+            );
+        }
+    } else {
+        res.status(400).json(
+            {
+                "status": 400,
+                "message": "car id not found"
+            }
+        )
+    }
+}
 
 
 module.exports = {
     createCar,
     updateCarStatus,
     updateCarPrice,
-    getCars
+    getCars,
+    getCar
 }

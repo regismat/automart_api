@@ -7,6 +7,14 @@ const cars = {
         "model": "",
         "body_type": "SUV"
     },
+    "correctCarData2": {
+        "owner": 1,
+        "state": "used",
+        "price": 37000,
+        "manufacturer": "Harrier",
+        "model": "",
+        "body_type": "SUV"
+    },
     "notCorrectCarData": {
         "owner": "",
         "state": "",

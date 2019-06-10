@@ -4,6 +4,7 @@ const expect = chai.expect;
 const request = require('supertest');
 const should = chai.should();
 let Cars = require('../seeds/cars');
+let CarCrtl = require('../src/resources/car/car.controller');
 
 describe('Create car advertisement', function(){
     
@@ -90,6 +91,36 @@ describe('View all unsold cars', function () {
                 });
            done();
             
+        })
+    })
+})
+
+describe('View a specific car', function () {
+    describe('GET /api/v1/car/:id', function () {
+        it('should return null, with a status code of 400 when no car found', function (done) {
+            request(app)
+                .get('/api/v1/car/2')
+                .set('Accept', 'application/json')
+                .expect(400)
+                .then(res => {
+                    res.body.should.be.a("Object")
+                    res.body.should.have.property("status")
+                    res.body.should.have.property("data")
+                    res.body.should.have.property("message")
+                });
+            done();
+        })
+
+        it('should return the found car, with a status code of 200', function (done) {
+           before(()=>{
+               const addedCar = CarCrtl.createCar(Cars.correctCarData);
+               console.log('added car:', addedCar)
+           })
+            request(app)
+                .get('/api/v1/car/1')
+                .set('Accept', 'application/json')
+                .expect(200)
+            done();
         })
     })
 })

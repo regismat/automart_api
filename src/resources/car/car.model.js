@@ -26,12 +26,32 @@ class Car {
         }
         return car;
     }
-
+    static getCar(id) {
+        const car = Car._dataSet[id-1];
+        if( car != undefined ) {
+            return car;
+        } else {
+            return false;
+        }
+    }
     static getCars() {
         return Car._dataSet;
     }
 };
 
-Car._dataSet = [];
+Car._dataSet = [{
+    "status": 200,
+    "data": {
+        "id": 1,
+        "owner": "1",
+        "created_on": "6/10/2019",
+        "status": "available",
+        "state": "used",
+        "price": 50,
+        "manufacturer": "Toyota",
+        "model": "ernoer",
+        "body_type": "harrier"
+    }
+}];
 
 module.exports = Car;
