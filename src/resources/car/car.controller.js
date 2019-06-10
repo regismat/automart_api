@@ -1,4 +1,5 @@
 let Car = require('./car.model');
+let UserHelper = require('../user/user.helper');
 const CarHelper = require('./car.helper');
 
 const createCar = (req, res) => {
@@ -173,11 +174,48 @@ const getCar = (req, res) => {
     }
 }
 
+const deleteCar = (req, res) => {
+    //check current_user_id, car_id
+    const { current_user_id, car_id } = req.body;
+    if ( !current_user_id || !car_id ){
+        res.status(400).json(
+            {
+                "status": 400,
+                "data": "invalid input data"
+            }
+        )
+    }
+    //check if the user is admin
+    //check if the car exists
+    let car = CarHelper.validateCarExists(car_id);
+    let current_user_is_admin = UserHelper.checkCurrentUserIsAdmin(current_user_id);
+    if ( !car ) res.status(400).json(
+            {
+                "status": 400,
+                "data": "car not found"
+            }
+        )
+    if ( !current_user_is_admin ) res.status(400).json(
+            {
+                "status": 400,
+                "data": "access restricted"
+            }
+        )
+    Car.destroyCar(car_id);
+    res.status(200).json(
+        {
+            "status": 200,
+            "data": "Car Ad successfully deleted"
+        }
+    )
+}
+
 
 module.exports = {
     createCar,
     updateCarStatus,
     updateCarPrice,
     getCars,
-    getCar
+    getCar,
+    deleteCar
 }

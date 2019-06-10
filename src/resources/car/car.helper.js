@@ -1,6 +1,7 @@
 let Car = require('./car.model')
 
 //required information: owner, state, price, manufacturer, model, body_type
+
 const validateRequiredInfo = (req) => {
     const {
         owner,

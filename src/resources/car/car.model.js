@@ -37,6 +37,10 @@ class Car {
     static getCars() {
         return Car._dataSet;
     }
+    static destroyCar(id) {
+        Car._dataSet[id] = undefined;
+        return true;
+    }
 };
 
 Car._dataSet = [

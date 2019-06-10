@@ -22,8 +22,22 @@ const checkPasswordMatch = (user, password) => {
     }
 }
 
+const checkCurrentUserIsAdmin = (user_id)=>{
+    const user = User._dataSet[user_id - 1];
+    if( user ) {
+        if( user.is_admin ) {
+            return true
+        }else{
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
 module.exports = {
     checkUniqEmail,
     checkRequiredInfo,
-    checkPasswordMatch
+    checkPasswordMatch,
+    checkCurrentUserIsAdmin
 }

@@ -28,6 +28,15 @@ class User {
         return User._dataSet.find(user => user.email == email)
     }
 };
-User._dataSet = [];
+User._dataSet = [
+    {
+        "id": 1,
+        "email": 'dav@gmail.com',
+        "first_name": "David",
+        "last_name": "Mathe",
+        "address": "Lusaka",
+        "is_admin": true
+    }
+];
 
 module.exports = User;

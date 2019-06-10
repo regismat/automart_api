@@ -223,3 +223,25 @@ describe('View all cars of a specific Manufacturer/marker', function () {
         })
     })
 })
+
+describe('Delete a specific car advertisement', function () {
+    describe('DELETE /api/v1/car/:id', function () {
+        it('should return an array of cars of specific maker, with a status code of 200', function (done) {
+            request(app)
+                .delete('/api/v1/car/1')
+                .set('Accept', 'application/json')
+                .send({
+                    "current_user_id": 1,
+                    "car_id": 1
+                })
+                .expect(200)
+                .then(res => {
+                    res.body.should.be.a("Object")
+                    res.body.should.have.property("status")
+                    res.body.should.have.property("data")
+                });
+            done();
+
+        })
+    })
+})
