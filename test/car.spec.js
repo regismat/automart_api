@@ -144,3 +144,22 @@ describe('View all unsold cars within a price range', function () {
         })
     })
 })
+
+describe('View all unsold carsView all posted ads whether sold or available ', function () {
+    describe('GET /api/v1/car', function () {
+        it('should return an array of cars, returning a status code of 200', function (done) {
+            request(app)
+                .get('/api/v1/car')
+                .set('Accept', 'application/json')
+                .expect(200)
+                .then(res => {
+                    res.body.should.be.a("Object")
+                    res.body.should.have.property("status");
+                    res.body.should.have.property("data")
+                    expect(res.body.data).to.be.an('array');
+                });
+            done();
+
+        })
+    })
+})

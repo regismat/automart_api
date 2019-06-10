@@ -55,7 +55,7 @@ Car._dataSet = [
     "id": 2,
     "owner": "1",
     "created_on": "6/10/2019",
-    "status": "available",
+    "status": "sold",
     "state": "used",
     "price": 5000,
     "manufacturer": "Toyota",
