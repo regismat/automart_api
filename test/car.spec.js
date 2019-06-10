@@ -50,3 +50,26 @@ describe('Mark posted car advertisement as sold ', function () {
         })
     })
 })
+
+describe('Update price of posted car advertisement', function () {
+
+    describe('PATCH /api/v1/car/:id/', function () {
+        it('should update a car advertisement with provided price, and respend with status code 200', function (done) {
+            request(app)
+                .patch('/api/v1/car/1/price')
+                .set('Accept', 'application/json')
+                .send(Cars.correctSoldCarData)
+                .expect(200)
+            done();
+        })
+
+        it('should not update a car advertisement because of incorrect data, and return status code 400', function (done) {
+            request(app)
+                .patch('/api/v1/car/1/price')
+                .set('Accept', 'application/json')
+                .send(Cars.notCorrectCarData)
+                .expect(400)
+            done();
+        })
+    })
+})
