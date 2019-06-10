@@ -91,11 +91,31 @@ const updateCarPrice = (req, res) => {
             })
         }
     }
+
 }
+
+const getCars = (req, res) => {
+    const {status} = req.query;
+    const allCars = Car.getCars();
+    let found_cars = [];
+    if( req.query ) {   
+        if ( status ) {
+            found_cars = allCars.filter(car => car.stus == status );
+        }
+    }
+    res.status(200).json(
+        {
+            "status":200,
+            "data": found_cars   
+        });
+}
+
+
 
 
 module.exports = {
     createCar,
     updateCarStatus,
-    updateCarPrice
+    updateCarPrice,
+    getCars
 }

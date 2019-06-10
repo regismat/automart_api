@@ -73,3 +73,23 @@ describe('Update price of posted car advertisement', function () {
         })
     })
 })
+
+describe('View all unsold cars', function () {
+    describe('GET /api/v1/car?status=available', function () {
+        let found_cars;
+        it('should return an array of cars, returning a status code of 200', function (done) {
+            request(app)
+                .get('/api/v1/car?status=available')
+                .set('Accept', 'application/json')
+                .expect(200)
+                .then(res => {
+                    res.body.should.be.a("Object");
+                    res.body.should.have.property("status");
+                    res.body.should.have.property("data")
+                    expect(res.body.data).to.be.an('array');
+                });
+           done();
+            
+        })
+    })
+})

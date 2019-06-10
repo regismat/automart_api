@@ -26,6 +26,10 @@ class Car {
         }
         return car;
     }
+
+    static getCars() {
+        return Car._dataSet;
+    }
 };
 
 Car._dataSet = [];
