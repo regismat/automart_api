@@ -95,7 +95,14 @@ const updateCarPrice = (req, res) => {
 }
 
 const getCars = (req, res) => {
-    const {status, min_price, max_price, state, body_type} = req.query;
+    const {
+        status,
+        min_price,
+        max_price,
+        state,
+        body_type,
+        manufacturer
+    } = req.query;
     const allCars = Car.getCars();
     let found_cars = [];
     if( JSON.stringify(req.query)!="{}" ) {   
@@ -112,6 +119,10 @@ const getCars = (req, res) => {
             found_cars = allCars.filter( car => car.body_type == body_type );
         }
         
+        if ( manufacturer ) {
+            found_cars = allCars.filter(car => car.manufacturer == manufacturer);
+        }
+
         if( min_price && max_price ) {
             found_cars = found_cars.filter( car => car.price >= min_price && car.price <= max_price )
         }
