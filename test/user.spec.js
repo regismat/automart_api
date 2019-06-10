@@ -10,22 +10,16 @@ const {
     emailExistUserData,
     wrongPassWordUserData
 } = Users;
-//const User = require('../src/resources/user/user.model');
 
 describe('User Signup', function () {
     
     describe('POST /api/v1/auth/signup', function () {
-        it('should create a new user', function (done) {
+        it('should create a new user with status code 200', function (done) {
             request(app)
                 .post('/api/v1/auth/signin')
                 .set('Accept', 'application/json')
                 .send(correctUserData)
-                .expect(200)
-                .then(res => {
-                    res.body.should.be.a("Object")
-                    res.body.should.have.property("status")
-                    res.body.should.have.property("data")
-                })
+                .expect(200);
                 done();
         });
 
@@ -34,73 +28,48 @@ describe('User Signup', function () {
                 .post('/api/v1/auth/signin')
                 .set('Accept', 'application/json')
                 .send(emailExistUserData)
-                .expect(400)
-                .then(res => {
-                    res.body.should.be.a("Object")
-                    res.body.should.have.property("status")
-                    res.body.should.have.property("message")
-                })
-            done();
+                .expect(400);
+                done();
         });
 
-        it('should return a message error in case email or password empty', function (done) {
+        it('should return a message error with status code 400 in case email or password empty', function (done) {
             request(app)
                 .post('/api/v1/auth/signin')
                 .set('Accept', 'application/json')
                 .send(emptyUserData)
-                .expect(400)
-                .then(res => {
-                    res.body.should.be.a("Object")
-                    res.body.should.have.property("status")
-                    res.body.should.have.property("message")
-                })
-            done();
+                .expect(400);
+                done();
         });
     });
 })
 
 describe('User login', function() {
     describe('POST /api/v1/auth/signin', function() {
-        it('should connect the user based on provided email and password', function (done) {
+        it('should connect the user based on provided email and password, with status code 200', function (done) {
             request(app)
                 .post('/api/v1/auth/signin')
                 .set('Accept', 'application/json')
                 .send(correctUserData)
-                .expect(200)
-                .then( res => {
-                    res.body.should.be.a("Object")
-                    res.body.should.have.property("status")
-                    res.body.should.have.property("data")
-                    res.body.data.should.be.a("Object")
-                })
-            done();
+                .expect(200);
+                done();
         })
 
-        it('should return an error when password does not match', function (done) {
+        it('should return an error with status code 400 when password does not match', function (done) {
             request(app)
                 .post('/api/v1/auth/signin')
                 .set('Accept', 'application/json')
                 .send(wrongPassWordUserData)
-                .expect(400)
-                .then(res => {
-                    res.body.should.be.a("Object")
-                    res.body.should.have.property("status")
-                    res.body.should.have.property("message")
-                })
+                .expect(400);
+                
             done();
         })
 
-        it('should return an error when email does not exist', function (done) {
+        it('should return an error with status code 400 when email does not exist', function (done) {
             request(app)
                 .post('/api/v1/auth/signin')
                 .set('Accept', 'application/json')
                 .send(correctUserData)
-                .expect(400)
-                .then(res => {
-                    res.body.should.be.a("Object")
-                    res.body.should.have.property("status")
-                    res.body.should.have.property("message")
-                })
+                .expect(400);
             done();
         })
 
