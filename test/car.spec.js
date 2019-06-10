@@ -99,7 +99,7 @@ describe('View a specific car', function () {
     describe('GET /api/v1/car/:id', function () {
         it('should return null, with a status code of 400 when no car found', function (done) {
             request(app)
-                .get('/api/v1/car/2')
+                .get('/api/v1/car/10000')
                 .set('Accept', 'application/json')
                 .expect(400)
                 .then(res => {

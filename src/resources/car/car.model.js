@@ -39,19 +39,29 @@ class Car {
     }
 };
 
-Car._dataSet = [{
-    "status": 200,
-    "data": {
+Car._dataSet = [
+    {
         "id": 1,
         "owner": "1",
         "created_on": "6/10/2019",
         "status": "available",
         "state": "used",
-        "price": 50,
-        "manufacturer": "Toyota",
-        "model": "ernoer",
-        "body_type": "harrier"
-    }
-}];
+        "price": 50000,
+        "manufacturer": "Mercedes",
+        "model": "M7G",
+        "body_type": "SUV"
+    },
+{
+    "id": 2,
+    "owner": "1",
+    "created_on": "6/10/2019",
+    "status": "available",
+    "state": "used",
+    "price": 5000,
+    "manufacturer": "Toyota",
+    "model": "Harrier",
+    "body_type": "van"
+}
+];
 
 module.exports = Car;
