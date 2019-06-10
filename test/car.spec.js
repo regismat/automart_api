@@ -183,3 +183,23 @@ describe('View all new unsold cars', function () {
         })
     })
 })
+
+describe('View all cars of a specific body type', function () {
+    describe('GET /api/v1/car?body_type=BodyType', function () {
+        it('should return an array of cars of same body-type, with a status code of 200', function (done) {
+            request(app)
+                .get('/api/v1/car?body_type=van')
+                .set('Accept', 'application/json')
+                .expect(200)
+                .then(res => {
+                    res.body.should.be.a("Object")
+                    res.body.should.have.property("status");
+                    res.body.should.have.property("data")
+                    expect(res.body.data).to.be.an('array');
+                    expect(res.body.data.length).to.equal(1)
+                });
+            done();
+
+        })
+    })
+})
