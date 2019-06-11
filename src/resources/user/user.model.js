@@ -27,6 +27,11 @@ class User {
     static findByEmail(email) {
         return User._dataSet.find(user => user.email == email)
     }
+
+    static renewPassword(user, new_password) {
+        user.password = new_password;
+        return true;
+    }
 };
 User._dataSet = [
     {
@@ -34,6 +39,7 @@ User._dataSet = [
         "email": 'dav@gmail.com',
         "first_name": "David",
         "last_name": "Mathe",
+        "password": 1,
         "address": "Lusaka",
         "is_admin": true
     }

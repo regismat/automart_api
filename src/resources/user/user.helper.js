@@ -22,6 +22,15 @@ const checkPasswordMatch = (user, password) => {
     }
 }
 
+const validateUserExists = (user_id) => {
+    const user = User._dataSet[user_id - 1];
+    if (user) {
+        return user;
+    } else {
+        return false;
+    }
+}
+
 const checkCurrentUserIsAdmin = (user_id)=>{
     const user = User._dataSet[user_id - 1];
     if( user ) {
@@ -39,5 +48,6 @@ module.exports = {
     checkUniqEmail,
     checkRequiredInfo,
     checkPasswordMatch,
-    checkCurrentUserIsAdmin
+    checkCurrentUserIsAdmin,
+    validateUserExists
 }

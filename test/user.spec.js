@@ -72,7 +72,37 @@ describe('User login', function() {
                 .expect(400);
             done();
         })
+    })
+})
 
-        
+describe('Password reset', function () {
+    describe('PATCH /api/v1/auth/reset_password', function () {
+        it('should update the user password based on provided email and password, with status code 200', function (done) {
+            request(app)
+                .post('/api/v1/auth/reset_password')
+                .set('Accept', 'application/json')
+                .send(
+                    {
+                        "email": "dav@gmail.com",
+                        "new_password": 123456
+                })
+                .expect(200);
+            done();
+        })
+
+        it('should return an error with status code 400 when new password or email not provided', function (done) {
+            request(app)
+                .post('/api/v1/auth/reset_password')
+                .set('Accept', 'application/json')
+                .send(
+                    {
+                        "email": "",
+                        "new_password": 123456
+                    }
+                )
+                .expect(400);
+
+            done();
+        })
     })
 })

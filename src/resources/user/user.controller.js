@@ -89,8 +89,34 @@ const signin = (req, res) => {
     }
 }
 
+const passwordReset = (req, res) => {
+    const { email, new_password } = req.body;
+    let current_user = UserHelper.checkUniqEmail(email);
+    
+    if (current_user == undefined) {
+        res.status(400).json({
+            "status": 400,
+            "data": "user account not found"
+        })
+    } else {
+        if (new_password) {
+            User.renewPassword(current_user, new_password);
+            res.status(200).json({
+                "status": 200,
+                "data": current_user
+            })
+        } else {
+            res.status(400).json({
+                "status": 400,
+                "data": "invalid password"
+            })
+        }
+    }
+}
+
 
 module.exports = {
     signup,
-    signin
+    signin,
+    passwordReset
 }
