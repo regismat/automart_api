@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 let port = 3000;
@@ -7,6 +5,7 @@ let app = express();
 const userRoute = require('./src/resources/user/user.router');
 const carRoute = require('./src/resources/car/car.router');
 const orderRoute = require('./src/resources/order/order.router');
+const flagRoute = require('./src/resources/flag/flag.router');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -21,6 +20,7 @@ app.get("/api/v1", (req,res) => {
 app.use('/api/v1/auth', userRoute);
 app.use('/api/v1/car', carRoute);
 app.use('/api/v1/order', orderRoute)
+app.use('/api/v1/flag', flagRoute);
 
 if(!module.parent){
     app.listen(port, ()=> console.log('Listening on port: ', port));
