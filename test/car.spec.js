@@ -245,3 +245,17 @@ describe('Delete a specific car advertisement', function () {
         })
     })
 })
+
+describe('Add multiple pictures to a car advertisement', function () {
+    describe('PATCH /api/v1/car/:id/album', function () {
+        it('should return the updated car, with a status code of 200', function (done) {
+            request(app)
+                .delete('/api/v1/car/1')
+                .set('Accept', 'application/json')
+                .send({"pictures_url":[]})
+                .expect(200)
+            done();
+
+        })
+    })
+})

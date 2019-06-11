@@ -2,6 +2,7 @@ let Car = require('./car.model');
 let UserHelper = require('../user/user.helper');
 const CarHelper = require('./car.helper');
 
+
 const createCar = (req, res) => {
     const userData = {
         owner,
@@ -70,7 +71,7 @@ const updateCarPrice = (req, res) => {
         price
     } = req.body;
     const id = req.params.id;
-    //check vailability of id and price
+    //check availability of id and price
     if (price == "" || id == "") {
         res.status(400).json({
             "status": 400,
@@ -93,6 +94,35 @@ const updateCarPrice = (req, res) => {
         }
     }
 
+}
+
+const updateAlbum = (req, res) => {
+    const userData = {
+        pictures_url
+    } = req.body;
+    const id = req.params.id;
+    //check availability of id and picture
+    if (pictures_url == undefined || pictures_url == "" || pictures_url == [] || id == "") {
+        res.status(400).json({
+            "status": 400,
+            "message": "invalid input"
+        })
+    } else {
+        //check availability of car
+        const car = CarHelper.validateCarExists(id);
+        if (car) {
+            Car.feedAlbum(car, pictures_url)
+            res.status(200).json({
+                "status": 200,
+                "data": car
+            })
+        } else {
+            res.status(400).json({
+                "status": 400,
+                "message": "car ad. not found"
+            })
+        }
+    }
 }
 
 const getCars = (req, res) => {
@@ -217,5 +247,6 @@ module.exports = {
     updateCarPrice,
     getCars,
     getCar,
-    deleteCar
+    deleteCar,
+    updateAlbum
 }

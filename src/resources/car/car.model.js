@@ -16,6 +16,7 @@ class Car {
         this.manufacturer = manufacturer;
         this.model = model;
         this.body_type = body_type;
+        this.album = [];
     }
     
     static create(car) {
@@ -40,6 +41,9 @@ class Car {
     static destroyCar(id) {
         Car._dataSet[id] = undefined;
         return true;
+    }
+    static feedAlbum(car,pictures_url) {
+       car.album = pictures_url;
     }
 };
 
