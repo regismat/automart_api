@@ -2,7 +2,7 @@
 
 
 # AutoMart API
-Set API endpoints that feed the [AutoMart UI](https://regismat.github.io/AutoMart)
+Set of API endpoints that feed the [AutoMart UI](https://regismat.github.io/AutoMart)
 
 ## Technologies and Tools
 
