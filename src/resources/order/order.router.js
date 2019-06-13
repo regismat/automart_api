@@ -2,6 +2,6 @@ const orderRouter = require('express').Router();
 const OrderCtrl = require('./order.controller');
 
 orderRouter.post('/', OrderCtrl.createOrder);
-orderRouter.patch('/', OrderCtrl.updateOrder);
+orderRouter.patch('/:id/price', OrderCtrl.updateOrder);
 
 module.exports =  orderRouter;

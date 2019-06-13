@@ -19,7 +19,8 @@ class User {
                 "first_name": user.first_name,
                 "last_name": user.last_name,
                 "address": user.address,
-                "is_admin": user.is_admin
+                "is_admin": user.is_admin,
+                "pasword": user.password
             }
         }
     }

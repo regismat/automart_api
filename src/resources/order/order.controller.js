@@ -30,9 +30,9 @@ const createOrder = (req, res) => {
 
 const updateOrder = (req, res) => {
     const userData = {
-        id,
         price_offered
     } = req.body;
+    const id  = req.params.id;
     
     const new_price_offered = price_offered;
     
@@ -76,11 +76,7 @@ const updateOrder = (req, res) => {
                 )
             }
         }
-    }
-        
-            
-                
-                    
+    }                   
 }
 
 module.exports = {

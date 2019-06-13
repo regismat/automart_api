@@ -4,9 +4,8 @@ const expect = chai.expect;
 const request = require('supertest');
 const should = chai.should();
 let Orders = require('../seeds/orders');
-
+let Order = require('../src/resources/order/order.model');
 describe('Create a purchase order', function(){
-    
     describe('POST /api/v1/order', function(){
         it('should create a purchase order with status code 200', function (done) {
             request(app)
@@ -30,10 +29,10 @@ describe('Create a purchase order', function(){
 
 describe('Update the offered price of a purchase order', function () {
 
-    describe('PATCH /api/v1/order', function () {
+    describe('PATCH /api/v1/order/:id', function () {
         it('should update a purchase order with status code 200', function (done) {
             request(app)
-                .patch('/api/v1/order')
+                .patch('/api/v1/order/id')
                 .set('Accept', 'application/json')
                 .send(Orders.correctOrderUpdatePriceData)
                 .expect(200)
@@ -45,7 +44,7 @@ describe('Update the offered price of a purchase order', function () {
             request(app)
                 .patch('/api/v1/order')
                 .set('Accept', 'application/json')
-                .send(Orders.correctOrderUpdatePriceData)
+                .send(Orders.notcorrectOrderUpdatePriceData)
                 .expect(400)
             done();
         })

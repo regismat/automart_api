@@ -34,7 +34,7 @@ describe('Mark posted car advertisement as sold ', function () {
     describe('PATCH /api/v1/car', function () {
         it('should update a car advertisement as sold with status code 200', function (done) {
             request(app)
-                .patch('/api/v1/car')
+                .patch('/api/v1/car/1')
                 .set('Accept', 'application/json')
                 .send(Cars.correctSoldCarData)
                 .expect(200)

@@ -219,25 +219,27 @@ const deleteCar = (req, res) => {
     //check if the car exists
     let car = CarHelper.validateCarExists(car_id);
     let current_user_is_admin = UserHelper.checkCurrentUserIsAdmin(current_user_id);
-    if ( !car ) res.status(400).json(
-            {
+    if (current_user_is_admin) {
+        if (car == undefined) {
+            res.status(400).json({
                 "status": 400,
                 "data": "car not found"
-            }
-        )
-    if ( !current_user_is_admin ) res.status(400).json(
-            {
-                "status": 400,
-                "data": "access restricted"
-            }
-        )
-    Car.destroyCar(car_id);
-    res.status(200).json(
-        {
-            "status": 200,
-            "data": "Car Ad successfully deleted"
+            })
+        }else{
+            Car.destroyCar(car_id - 1);
+
+            res.status(200).json({
+                "status": 200,
+                "data": "Car Ad successfully deleted"
+            })
         }
-    )
+        
+    }else{
+        res.status(400).json({
+            "status": 400,
+            "data": "access restricted"
+        })
+    }
 }
 
 
